@@ -1,0 +1,7 @@
+displayName: Replace Query Regex
+type: middleware
+iconPath: .assets/icon.png
+
+import: github.com/traefik/plugindemo
+
+summary: "Middleware that replaces matching matches in the Raw Query with a replacement string."
