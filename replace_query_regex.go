@@ -17,6 +17,7 @@ type Config struct {
 
 // CreateConfig creates the default plugin configuration.
 func CreateConfig() *Config {
+	fmt.Errorf("Create default config.")
 	return &Config{}
 }
 
@@ -24,9 +25,12 @@ type ReplaceQueryRegex struct {
 	next        http.Handler
 	regexp      *regexp.Regexp
 	replacement string
+	name        string
 }
 
 func New(ctx context.Context, next http.Handler, config *Config, name string) (http.Handler, error) {
+	fmt.Errorf("AAA Loading plugin %s with regex %s and replacement %s\n", name, config.Regex, config.Replacement)
+
 	if len(config.Regex) == 0 {
 		return nil, fmt.Errorf("regex cannot be empty")
 	}
@@ -40,16 +44,16 @@ func New(ctx context.Context, next http.Handler, config *Config, name string) (h
 		return nil, fmt.Errorf("error compiling regular expression %s: %w", config.Regex, err)
 	}
 
-	fmt.Printf("Loaded plugin %s with regex %s and replacement %s\n", name, config.Regex, config.Replacement)
-
 	return &ReplaceQueryRegex{
 		next:        next,
 		regexp:      exp,
 		replacement: config.Replacement,
+		name:        name,
 	}, nil
 }
 
 func (a *ReplaceQueryRegex) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+	fmt.Errorf("AAAAA..")
 	req.URL.RawQuery = a.regexp.ReplaceAllString(req.URL.RawQuery, a.replacement)
 	a.next.ServeHTTP(rw, req)
 }
