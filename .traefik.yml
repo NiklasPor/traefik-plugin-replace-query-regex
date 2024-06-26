@@ -5,3 +5,8 @@ iconPath: .assets/icon.png
 import: github.com/NiklasPor/traefik-plugin-replace-query-regex
 
 summary: "Middleware that replaces matching matches in the Raw Query with a replacement string."
+
+testData:
+  Headers:
+    X-Demo: test
+    X-URL: "{{URL}}"
