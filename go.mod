@@ -1,3 +1,3 @@
-module github.com/niklaspor/traefik-plugin-replace-query-regex
+module github.com/NiklasPor/traefik-plugin-replace-query-regex
 
 go 1.19
