@@ -40,6 +40,8 @@ func New(ctx context.Context, next http.Handler, config *Config, name string) (h
 		return nil, fmt.Errorf("error compiling regular expression %s: %w", config.Regex, err)
 	}
 
+	fmt.Printf("Loaded plugin %s with regex %s and replacement %s\n", name, config.Regex, config.Replacement)
+
 	return &ReplaceQueryRegex{
 		next:        next,
 		regexp:      exp,
