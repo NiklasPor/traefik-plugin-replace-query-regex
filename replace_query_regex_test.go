@@ -1,16 +1,14 @@
-package replacequeryregex_test
+package traefik_plugin_replace_query_regex
 
 import (
 	"context"
 	"net/http"
 	"net/http/httptest"
 	"testing"
-
-	"github.com/niklaspor/replacequeryregex"
 )
 
-func TestRepalceQueryRegex(t *testing.T) {
-	cfg := &replacequeryregex.Config{
+func TestReplaceQueryRegex(t *testing.T) {
+	cfg := &Config{
 		Replacement: "BB",
 		Regex:       "AA",
 	}
@@ -18,7 +16,7 @@ func TestRepalceQueryRegex(t *testing.T) {
 	ctx := context.Background()
 	next := http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {})
 
-	handler, err := replacequeryregex.New(ctx, next, cfg, "plugin-test")
+	handler, err := New(ctx, next, cfg, "plugin-test")
 	if err != nil {
 		t.Fatal(err)
 	}

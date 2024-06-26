@@ -1,5 +1,5 @@
 // Package plugindemo a demo plugin.
-package replacequeryregex
+package traefik_plugin_replace_query_regex
 
 import (
 	"context"
